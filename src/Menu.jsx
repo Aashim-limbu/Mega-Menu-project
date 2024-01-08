@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import {useState} from "react"
-function Menu() {
+function Menu({ Query }) {
 	const { data: destinations, isLoading } = useQuery({
 		queryKey: ["destinations"],
 		queryFn: getDestination,
 	});
-    const [Query,setQuery] = useState(0)
 	async function getDestination() {
 		const response = await axios.get("/api/partner/v1/taxonomy/destinations", {
 			headers: {
@@ -48,7 +46,7 @@ function Menu() {
 				<div>Loading...</div>
 			) : (
 				destinations?.data
-					.filter((element) => element.destinationType === "COUNTRY")
+					.filter((element) => element.parentId === Query)
 					.map((country) => (
 						<div key={country.destinationId}>
 							<strong>Country Name:</strong> {country.destinationName}
