@@ -14,13 +14,11 @@ function Menu({ Query }) {
 		});
 
 		if (response.status === 200) {
-			console.log(response.data);
 			return response.data;
 		} else {
 			throw new Error("Request failed with status:", response.status);
 		}
 	}
-	console.log();
 	const getContinentName = (parentId) => {
 		switch (parentId) {
 			case 1:
@@ -39,10 +37,21 @@ function Menu({ Query }) {
 				return "Unknown Continent";
 		}
 	};
-	function renderAttraction(id) {
-		console.log(
-			destinations?.data?.filter((destination) => destination.parentId === id)
+	async function renderAttraction(id) {
+		const response = await axios.post(
+			"/api/partner/v1/taxonomy/attractions",
+			{
+				destId: id,
+				sortOrder: "RECOMMENDED",
+			},
+			{
+				headers: {
+					"exp-api-key": import.meta.env.VITE_ACCESS_KEY,
+					"Content-Type": "application/json",
+				},
+			}
 		);
+		console.log(response.data.data);
 	}
 	return (
 		<>
