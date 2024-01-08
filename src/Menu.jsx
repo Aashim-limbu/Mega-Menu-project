@@ -29,11 +29,11 @@ function Menu({ Query }) {
 				return "Asia";
 			case 3:
 				return "Oceania";
-			case 4:
+			case 9:
 				return "South America";
 			case 6:
 				return "Europe";
-			case 7:
+			case 8:
 				return "North America";
 			default:
 				return "Unknown Continent";
@@ -52,6 +52,9 @@ function Menu({ Query }) {
 							<strong>Country Name:</strong> {country.destinationName}
 							<br />
 							<strong>Continent:</strong> {getContinentName(country.parentId)}
+							<br />
+							<strong>Parent Id: </strong>
+							{country.parentId}
 						</div>
 					))
 			)}
