@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import {useState} from "react"
 function Menu() {
 	const { data: destinations, isLoading } = useQuery({
 		queryKey: ["destinations"],
 		queryFn: getDestination,
 	});
+    const [Query,setQuery] = useState(0)
 	async function getDestination() {
 		const response = await axios.get("/api/partner/v1/taxonomy/destinations", {
 			headers: {
@@ -57,7 +59,6 @@ function Menu() {
 			)}
 		</div>
 	);
-
 }
 
 export default Menu;
