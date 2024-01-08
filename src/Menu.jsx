@@ -20,7 +20,7 @@ function Menu({ Query }) {
 			throw new Error("Request failed with status:", response.status);
 		}
 	}
-	console.log(destinations);
+	console.log();
 	const getContinentName = (parentId) => {
 		switch (parentId) {
 			case 1:
@@ -39,26 +39,39 @@ function Menu({ Query }) {
 				return "Unknown Continent";
 		}
 	};
-
+	function renderAttraction(id) {
+		console.log(
+			destinations?.data?.filter((destination) => destination.parentId === id)
+		);
+	}
 	return (
-		<div>
+		<>
 			{isLoading ? (
 				<div>Loading...</div>
 			) : (
-				destinations?.data
-					.filter((element) => element.parentId === Query)
-					.map((country) => (
-						<div key={country.destinationId}>
-							<strong>Country Name:</strong> {country.destinationName}
-							<br />
-							<strong>Continent:</strong> {getContinentName(country.parentId)}
-							<br />
-							<strong>Parent Id: </strong>
-							{country.parentId}
-						</div>
-					))
+				<div className="grid grid-cols-4 gap-2">
+					{destinations?.data
+						.filter((element) => element.parentId === Query)
+						.map((country) => (
+							<div
+								className="bg-gray-400  p-4"
+								key={country.destinationId}
+								onClick={() => renderAttraction(country.destinationId)}
+							>
+								<strong>Country Name:</strong> {country.destinationName}
+								<br />
+								<strong>Continent:</strong> {getContinentName(country.parentId)}
+								<br />
+								<strong>Parent Id: </strong>
+								{country.parentId}
+								<br />
+								<strong>Destination Id : </strong>
+								{country.destinationId}
+							</div>
+						))}
+				</div>
 			)}
-		</div>
+		</>
 	);
 }
 
