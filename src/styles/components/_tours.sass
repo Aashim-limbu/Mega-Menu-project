@@ -1,0 +1,67 @@
+@use '../helper/_variables' as *
+@use '../helper/_mixin' as *
+@use '../layout/_layout' as *
+
+.tours
+  margin-top: 3rem
+  .tours-list
+    display: flex
+    gap: 20px
+    flex-wrap: wrap
+
+    .tour
+      flex: 23%
+      max-width: 23%
+      width: 100%
+      box-shadow: 0 4px 10px rgba($dark, .1)
+      border-radius: .3rem
+      @include fastTrans()
+      overflow: hidden
+      cursor: pointer
+
+      @keyframes loading
+        0%
+          opacity: .5
+        100%
+          opacity: 1
+
+      &.loading
+        pointer-events: none
+
+        .image
+          background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+          animation: 1s loading alternate infinite
+
+        .content
+          h3
+            height: 2rem
+            border-radius: .4rem
+            width: 80%
+            background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+            animation: 1s loading alternate infinite
+
+      &:hover
+        box-shadow: 0 4px 10px rgba($dark, .1)
+        transform: translateY(2px)
+        transform: scale(1.03)
+
+        .image
+          img
+            transform: scale(1.1)
+
+      .image
+        height: 10rem
+        width: 100%
+        // border-radius: .3rem
+        overflow: hidden
+
+        img
+          @include image()
+          @include fastTrans()
+
+      .content
+        padding: .8rem
+
+        h3
+          font-size: .9rem
+          font-weight: 600
