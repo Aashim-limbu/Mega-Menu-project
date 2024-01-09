@@ -1,6 +1,8 @@
 import axios from "axios";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 function Menu({ Query }) {
+    const [IsOpen,setIsOpen] = useState(false)
 	const { data: destinations, isLoading } = useQuery({
 		queryKey: ["destinations"],
 		queryFn: getDestination,
@@ -51,7 +53,7 @@ function Menu({ Query }) {
 				},
 			}
 		);
-		console.log(response.data.data);
+		console.log(response);
 	}
 	return (
 		<>
