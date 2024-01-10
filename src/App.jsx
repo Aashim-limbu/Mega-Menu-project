@@ -7,6 +7,7 @@ import { ToursComponent } from "./components/Tours/Tours.component";
 function App() {
   const [Query, setQuery] = useState(0);
   const [subMenu, setSubMenu] = useState(null);
+  const [allProducts, setAllProducts] = useState(null);
 
   return (
     <div className="App">
@@ -17,10 +18,11 @@ function App() {
           subMenu={subMenu}
           setSubMenu={setSubMenu}
           setQuery={setQuery}
+          setAllProducts={setAllProducts}
         />
       </header>
 
-      <ToursComponent tours={subMenu} />
+      <ToursComponent tours={subMenu} allProducts={allProducts} />
     </div>
   );
 }

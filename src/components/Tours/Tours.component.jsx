@@ -1,125 +1,251 @@
 import React, { useEffect, useState } from "react";
 import LazyImage from "../ImageLazyLoading.component";
 import axios from "axios";
+import HtmlToParagraphs from "../HtmlToParagraph.component";
 
-export const ToursComponent = ({ tours }) => {
-  const [allTags, setAllTags] = useState(null);
-  async function renderAttractionDetails() {
-    const res = await axios.get(`/api/partner/products/tags/`, {
-      headers: {
-        "exp-api-key": import.meta.env.VITE_ACCESS_KEY,
-        "Content-Type": "application/json",
-        "Accept-Language": "en-US",
-        Accept: "application/json;version=2.0",
-      },
-    });
-
-    if (res.status === 200) {
-      // console.log(res);
-      // return response.data || { data: [] };
-      setAllTags(res?.data?.tags);
-      res?.data?.tags
-        ?.filter((tagID) => tagID.tagId === 21913)
-        .map((tag) => {
-          console.log(tag);
-        });
-    } else {
-      // throw new Error("Request failed with status:", response.status);
-    }
-  }
-
-  renderAttractionDetails();
-
-  // console.log(tours);
+export const ToursComponent = ({ tours, allProducts }) => {
+  // console.log("allProducts: ", allProducts);
 
   return (
     <div className="tours">
       <div className="wrapper">
-        <ol>
-          {allTags
-            // ?.filter((parentTag) => parentTag?.parentTagIds?.length > 3)
-            ?.map((tag) => (
-              <li>
-                {tag?.allNamesByLocale?.en}:{" "}
-                {tag?.parentTagIds?.map((pTag) => `${pTag}, `)}
-              </li>
-            ))}
-        </ol>
         <div className="tours-list">
-          {tours === "Loading" ? (
+          {allProducts === "Loading" ? (
             <>
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
+
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
+
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
+
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
+
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
+
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
+
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="tour loading">
+              <div className="item loading">
                 <div className="image"></div>
 
                 <div className="content">
-                  <h3></h3>
-                </div>
-              </div>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name"></h3>
+                    </div>
 
-              <div className="tour loading">
-                <div className="image"></div>
+                    <div className="price">
+                      <div className="from"></div>
+                      <h4 className=""></h4>
+                    </div>
+                  </div>
 
-                <div className="content">
-                  <h3></h3>
+                  <div className="item-contact-info">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </>
-          ) : tours?.length ? (
-            tours?.map((tour) => (
-              <div
-                className="tour"
-                key={tour.sortOrder}
-                // onClick={() => renderAttractionDetails(tour.destinationId)}
-              >
+          ) : allProducts?.length ? (
+            allProducts?.map((tour) => (
+              <div className="item" key={tour.sortOrder}>
                 <div className="image">
+                  {/* <div className="featured">{tour.primaryDestinationName}</div> */}
+
+                  {/* <button className="wishlist">
+                    <i className="far fa-heart"></i>
+                  </button> */}
+
                   <LazyImage
                     imageLow={tour.thumbnailURL}
                     imageHigh={tour.thumbnailHiResURL}
@@ -129,7 +255,37 @@ export const ToursComponent = ({ tours }) => {
                 </div>
 
                 <div className="content">
-                  <h3>{tour.title}</h3>
+                  <div className="rot-info">
+                    <div className="rot-name">
+                      <h3 className="name" title={tour.title}>
+                        {tour.title}
+                      </h3>
+                    </div>
+
+                    <div className="price">
+                      <span> from</span>
+                      <h4 className="">{tour.priceFormatted}</h4>
+                    </div>
+                  </div>
+
+                  <div className="item-contact-info">
+                    <HtmlToParagraphs
+                      data={tour?.shortDescription}
+                      length={300}
+                    />
+                  </div>
+
+                  <div className="item-footer">
+                    <ul>
+                      <li>
+                        <i className="far fa-map"></i>
+                        {tour.primaryDestinationName}
+                      </li>
+                      <li>
+                        <i className="far fa-clock"></i> {tour.duration}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             ))

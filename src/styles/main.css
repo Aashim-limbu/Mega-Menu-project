@@ -245,9 +245,9 @@ header .inner-header .side-nav-button {
   top: 0;
   left: 100%;
   width: 400px;
-  height: 400px;
+  height: 300px;
   border: 1px solid #1F1F1F;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: #FFFFFF;
   overflow: auto;
   z-index: 100;
@@ -255,12 +255,14 @@ header .inner-header .side-nav-button {
 .menu-dropdown .menu-dropdown-list .drop-menu .sub-menu-dropdown li {
   padding: 1rem;
   cursor: pointer;
+  font-size: 0.8rem;
 }
 .menu-dropdown .menu-dropdown-list .drop-menu .sub-menu-dropdown li:hover {
   background-color: rgba(31, 31, 31, 0.1);
 }
 .menu-dropdown .menu-dropdown-list .drop-menu .sub-menu-dropdown li.loading-li {
-  height: 3rem;
+  height: 2rem;
+  border-radius: 0.4rem;
   width: 100%;
   background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
   margin-bottom: 0.5rem;
@@ -279,9 +281,153 @@ header .inner-header .side-nav-button {
   margin-top: 3rem;
 }
 .tours .tours-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tours .tours-list .item {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1rem;
+}
+@keyframes loading {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tours .tours-list .item.loading .image {
+  background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
+  animation: 1s loading alternate infinite;
+}
+.tours .tours-list .item.loading .content .rot-info .rot-name {
+  width: 80%;
+}
+.tours .tours-list .item.loading .content .rot-info .rot-name .name {
+  background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
+  animation: 1s loading alternate infinite;
+  width: 100%;
+  height: 2rem;
+}
+.tours .tours-list .item.loading .content .rot-info .price {
+  width: 20%;
+}
+.tours .tours-list .item.loading .content .rot-info .price .from {
+  height: 0.8rem;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
+  animation: 1s loading alternate infinite;
+  margin-bottom: 0.5rem;
+}
+.tours .tours-list .item.loading .content .rot-info .price h4 {
+  height: 1.6rem;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
+  animation: 1s loading alternate infinite;
+}
+.tours .tours-list .item.loading .content .item-contact-info p {
+  height: 1rem;
+  margin-bottom: 0.4rem;
+  background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
+  animation: 1s loading alternate infinite;
+}
+.tours .tours-list .item.loading .content .item-contact-info p:nth-child(1) {
+  width: 98%;
+}
+.tours .tours-list .item.loading .content .item-contact-info p:nth-child(2) {
+  width: 96%;
+}
+.tours .tours-list .item.loading .content .item-contact-info p:nth-child(3) {
+  width: 94%;
+}
+.tours .tours-list .item.loading .content .item-contact-info p:nth-child(4) {
+  width: 60%;
+}
+.tours .tours-list .item.loading .content .item-footer ul li {
+  height: 0.9rem;
+  margin-bottom: 0.3rem;
+  width: 30%;
+  background: linear-gradient(90deg, rgba(31, 31, 31, 0.2), rgba(31, 31, 31, 0.1));
+  animation: 1s loading alternate infinite;
+}
+.tours .tours-list .item .image {
+  width: 18rem;
+  border-radius: 0.4rem 0 0 0.4rem;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+.tours .tours-list .item .content {
+  max-width: calc(100% - 18rem);
+  width: 100%;
+  border-radius: 0 0.4rem 0.4rem 0;
+  border: 1px solid rgba(31, 31, 31, 0.15);
+  padding: 1rem;
+}
+.tours .tours-list .item .content .rot-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+.tours .tours-list .item .content .rot-info .rot-name {
+  width: 100%;
+  max-width: 90%;
+}
+.tours .tours-list .item .content .rot-info .rot-name .name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  line-height: 150%;
+  display: block;
+  margin-top: 0;
+}
+.tours .tours-list .item .content .rot-info .price {
+  text-align: right;
+}
+.tours .tours-list .item .content .rot-info .price span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.tours .tours-list .item .content .rot-info .price h4 {
+  color: #A00000;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.tours .tours-list .item .content .heading {
+  margin: 0 !important;
+}
+.tours .tours-list .item .content .heading.first-heading {
+  flex-direction: row;
+}
+.tours .tours-list .item .content .heading li {
+  width: 100%;
+}
+.tours .tours-list .item .content .item-contact-info {
+  margin: 1rem 0;
+}
+.tours .tours-list .item .content .item-contact-info p {
+  font-size: 0.8rem;
+}
+.tours .tours-list .item .content .item-footer {
+  margin-top: 1rem;
+}
+.tours .tours-list .item .content .item-footer ul li {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
 }
 .tours .tours-list .tour {
   flex: 23%;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-function Menu({ Query, subMenu, setSubMenu, setQuery }) {
+function Menu({ Query, subMenu, setSubMenu, setQuery, setAllProducts }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [submenuPosition, setSubmenuPosition] = useState({ x: 0, y: 0 });
 
@@ -20,6 +20,7 @@ function Menu({ Query, subMenu, setSubMenu, setQuery }) {
     });
 
     if (response.status === 200) {
+      // console.log("Destination: ", response.data);
       return response.data || { data: [] };
     } else {
       throw new Error("Request failed with status:", response.status);
@@ -38,6 +39,7 @@ function Menu({ Query, subMenu, setSubMenu, setQuery }) {
       {
         destId: id,
         sortOrder: "RECOMMENDED",
+        // topX: "1-6",
       },
       {
         headers: {
@@ -48,7 +50,11 @@ function Menu({ Query, subMenu, setSubMenu, setQuery }) {
     );
 
     if (response.status === 200) {
-      console.log(response.data.data);
+      console.log("Attractions: ", response.data.data);
+
+      response.data.data.map((data) => {
+        console.log(data.primaryDestinationUrlName);
+      });
       setSubMenu(response.data.data);
 
       // const res = await axios.get(`/api/partner/products/tags/`, {
@@ -73,12 +79,12 @@ function Menu({ Query, subMenu, setSubMenu, setQuery }) {
 
       // console.log(res.data);
 
-      if (res.status === 200) {
-        // console.log(response)
-        // return response.data || { data: [] };
-      } else {
-        // throw new Error("Request failed with status:", response.status);
-      }
+      // if (res.status === 200) {
+      // console.log(response)
+      // return response.data || { data: [] };
+      // } else {
+      // throw new Error("Request failed with status:", response.status);
+      // }
     } else {
       setSubMenu(null);
       throw new Error("Request failed with status:", response.status);
@@ -105,17 +111,18 @@ function Menu({ Query, subMenu, setSubMenu, setQuery }) {
                     key={country.destinationId}
                     onClick={() => {
                       handleMouseEnter(country);
-                      setQuery("");
                     }}
                     // onMouseLeave={() => setHoveredItem(null)}
                   >
                     {country.destinationName}
-                    {/* {hoveredItem === country.destinationId && (
+                    {hoveredItem === country.destinationId && (
                       <SubMenu
+                        setQuery={setQuery}
                         subMenu={subMenu}
+                        setAllProducts={setAllProducts}
                         position={{ ...submenuPosition }}
                       />
-                    )} */}
+                    )}
                   </li>
                 ))}
             </ul>
@@ -126,8 +133,30 @@ function Menu({ Query, subMenu, setSubMenu, setQuery }) {
   );
 }
 
-const SubMenu = ({ subMenu, position }) => {
+const SubMenu = ({ subMenu, position, setAllProducts, setQuery }) => {
   const { x, y } = position;
+
+  async function renderAttractionDetails(seoId) {
+    setAllProducts("Loading");
+    const res = await axios.get(
+      `/api/partner/v1/attraction/products?seoId=${seoId}`,
+      {
+        headers: {
+          Accept: "application/json;version=2.0",
+          "exp-api-key": import.meta.env.VITE_ACCESS_KEY,
+          "Content-Type": "application/json",
+          "Accept-Language": "en-US",
+        },
+      }
+    );
+
+    if (res.status === 200) {
+      setAllProducts(res.data.data);
+    } else {
+      setAllProducts(null);
+      throw new Error("Request failed with status:", res.status);
+    }
+  }
 
   return (
     <ul
@@ -143,11 +172,26 @@ const SubMenu = ({ subMenu, position }) => {
           <li className="loading-li"></li>
           <li className="loading-li"></li>
           <li className="loading-li"></li>
+          <li className="loading-li"></li>
+          <li className="loading-li"></li>
+          <li className="loading-li"></li>
+          <li className="loading-li"></li>
+          <li className="loading-li"></li>
         </>
       ) : (
         subMenu
           // ?.filter((data) => data.rating >= 4.5)
-          .map((tour, index) => <li key={index}>{tour.title}</li>)
+          .map((tour, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                setQuery("");
+                renderAttractionDetails(tour.seoId);
+              }}
+            >
+              {tour.title}
+            </li>
+          ))
       )}
     </ul>
   );

@@ -5,9 +5,154 @@
 .tours
   margin-top: 3rem
   .tours-list
-    display: flex
-    gap: 20px
-    flex-wrap: wrap
+    // display: flex
+    // gap: 20px
+    // flex-wrap: wrap
+    max-width: 800px
+    margin: 0 auto
+
+    .item
+      @include flex($justify: flex-start)
+      align-items: stretch
+      width: 100%
+      height: 100%
+      margin-bottom: 1rem
+
+      @keyframes loading
+        0%
+          opacity: .5
+        100%
+          opacity: 1
+
+      &.loading
+        .image
+          background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+          animation: 1s loading alternate infinite
+
+        .content
+          .rot-info
+            .rot-name
+              width: 80%
+
+              .name
+                background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+                animation: 1s loading alternate infinite
+                width: 100%
+                height: 2rem
+
+            .price
+              width: 20%
+
+              .from
+                height: .8rem
+                width: 100%
+                background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+                animation: 1s loading alternate infinite
+                margin-bottom: .5rem
+
+              h4
+                height: 1.6rem
+                width: 100%
+                background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+                animation: 1s loading alternate infinite
+
+          .item-contact-info
+            p
+              height: 1rem
+              margin-bottom: .4rem
+              background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+              animation: 1s loading alternate infinite
+
+              &:nth-child(1)
+                width: 98%
+
+              &:nth-child(2)
+                width: 96%
+
+              &:nth-child(3)
+                width: 94%
+
+              &:nth-child(4)
+                width: 60%
+
+          .item-footer
+            ul
+              li
+                height: .9rem
+                margin-bottom: .3rem
+                width: 30%
+                background: linear-gradient(90deg, rgba($dark, .2), rgba($dark, .1))
+                animation: 1s loading alternate infinite
+
+      .image
+        width: 18rem
+        border-radius: .4rem 0 0 .4rem
+        height: auto
+        position: relative
+        overflow: hidden
+
+      .content
+        max-width: calc( 100% - 18rem )
+        width: 100%
+        border-radius: 0 .4rem .4rem 0
+        border: 1px solid rgba($dark, .15)
+        padding: 1rem
+
+        .rot-info
+          @include flex($justify: flex-start)
+          align-items: flex-start
+          gap: 1rem
+          margin-bottom: .4rem
+
+          .rot-name
+            width: 100%
+            max-width: 90%
+
+            .name
+              font-size: 1rem
+              font-weight: 600
+              margin-bottom: 0
+              line-height: 150%
+              display: block
+              margin-top: 0
+
+          .price
+            text-align: right
+
+            span
+              font-size: .8rem
+              text-transform: uppercase
+              margin-bottom: .6rem
+
+            h4
+              color: #A00000
+              font-size: 1rem
+              font-weight: 500
+
+        .heading
+          margin: 0 !important
+
+          &.first-heading
+            flex-direction: row
+
+          li
+            width: 100%
+
+        .item-contact-info
+          margin: 1rem 0
+          p
+            font-size: .8rem
+
+        .item-footer
+          margin-top: 1rem
+
+          ul
+            li
+              font-size: .8rem
+              font-weight: 500
+              margin-bottom: .3rem
+              @include flex($justify: flex-start)
+              gap: .4rem
 
     .tour
       flex: 23%

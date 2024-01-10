@@ -8,13 +8,14 @@ const LazyImage = ({ imageLow, imageHigh, alt }) => {
   };
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "auto" }}>
+    <>
       <img
         src={imageLow}
         alt={alt}
         style={{
           width: "100%",
-          height: "auto",
+          height: "100%",
+          objectFit: "cover",
           filter: imageLoaded ? "blur(0)" : "blur(20px)",
           transition: "filter 0.3s ease-in-out",
           position: "absolute",
@@ -29,7 +30,8 @@ const LazyImage = ({ imageLow, imageHigh, alt }) => {
           alt={alt}
           style={{
             width: "100%",
-            height: "auto",
+            height: "100%",
+            objectFit: "cover",
             position: "absolute",
             top: 0,
             left: 0,
@@ -41,7 +43,7 @@ const LazyImage = ({ imageLow, imageHigh, alt }) => {
           }}
         />
       )}
-    </div>
+    </>
   );
 };
 
